@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -25,21 +26,35 @@ public class RegistrationFormTest {
         $(".react-datepicker__month-select").selectOption("November");
         $(".react-datepicker__year-select").click();
         $(".react-datepicker__year-select").selectOption("1998");
-//        $("react-datepicker__day react-datepicker__day--003").click(); Don't work?!
         $("[class*='react-datepicker__day--030']").click();
 //      $("[aria-label$='March 1st, 1992']").click(); //Don't work?!
 //      $("[aria-label='Choose Sunday, March 1st, 1992']").click(); // Also don't work?????!
-        $("subjectsInput").setValue("Economics").pressEnter();
-        $("hobbiesWrapper").$(byText("Sport")).click();
-        $("currentAddress").setValue("TestAddress");
+        $("#subjectsInput").setValue("Economics").pressEnter();
+//      $(byId("hobbiesWrapper")).$(byText("Sport")).click(); //Don't work?
+        $("[for=hobbies-checkbox-1]").click();
+        $("#currentAddress").setValue("TestAddress");
 //      $("uploadPicture").uploadFile(new File("src/test/resources/images/test.png"));
-        $("uploadPicture").uploadFromClasspath("images/test.png");
+        $("#uploadPicture").uploadFromClasspath("images/test.png");
+//      $("[for=uploadPicture]").uploadFromClasspath("images/test.png");
 
         $("#state").click();
         $("#stateCity-wrapper").$(byText("Haryana")).click();
-        $("#sity").click();
-        $("#stateCity-wrapper").$(byText("Karnal")).click();
+        $("#react-select-4-input").setValue("Karnal");
 
-        $("submit").click();
+//      $("submit").click();// don't work
+        $("[id=submit]").click();
+
+        $(".table-responsive").shouldHave(Condition.text("TestFirstName"),
+                Condition.text("TestLastName"),
+                Condition.text("test@mail.ru"),
+                Condition.text("Male"),
+                Condition.text("1234567890"),
+                Condition.text("30 November,1998"),
+                Condition.text("Economics"),
+                Condition.text("Sports"),
+                Condition.text("test.png"),
+                Condition.text("TestAddress"),
+                Condition.text("Haryana"),
+                Condition.text("Karnal"));
     }
 }
