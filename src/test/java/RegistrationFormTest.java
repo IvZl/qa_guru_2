@@ -39,7 +39,7 @@ public class RegistrationFormTest {
 
         $("#state").click();
         $("#stateCity-wrapper").$(byText("Haryana")).click();
-        $("#react-select-4-input").setValue("Karnal");
+        $("#react-select-4-input").setValue("Karnal").pressEnter();
 
 //      $("submit").click();// don't work
         $("[id=submit]").click();
