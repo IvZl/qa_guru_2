@@ -1,4 +1,3 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -6,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Condition.*;
 
 public class RegistrationFormTest {
     @BeforeAll
@@ -44,17 +44,17 @@ public class RegistrationFormTest {
 //      $("submit").click();// don't work
         $("[id=submit]").click();
 
-        $(".table-responsive").shouldHave(Condition.text("TestFirstName"),
-                Condition.text("TestLastName"),
-                Condition.text("test@mail.ru"),
-                Condition.text("Male"),
-                Condition.text("1234567890"),
-                Condition.text("30 November,1998"),
-                Condition.text("Economics"),
-                Condition.text("Sports"),
-                Condition.text("test.png"),
-                Condition.text("TestAddress"),
-                Condition.text("Haryana"),
-                Condition.text("Karnal"));
+        $(".table-responsive").shouldHave(text("TestFirstName"),
+                text("TestLastName"),
+                text("test@mail.ru"),
+                text("Male"),
+                text("1234567890"),
+                text("30 November,1998"),
+                text("Economics"),
+                text("Sports"),
+                text("test.png"),
+                text("TestAddress"),
+                text("Haryana"),
+                text("Karnal"));
     }
 }
